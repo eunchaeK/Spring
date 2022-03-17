@@ -16,8 +16,6 @@ public class TwoDice {
 		int idx1 = (int)(Math.random()*6)+1;
 		int idx2 = (int)(Math.random()*6)+1;
 		
-		
-		
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("utf-8");
 		PrintWriter out = resp.getWriter();

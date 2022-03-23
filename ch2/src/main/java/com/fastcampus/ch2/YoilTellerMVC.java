@@ -18,7 +18,7 @@ public class YoilTellerMVC {
 	//https://beausty23.tistory.com/3
 	
 	//http://localhost:8090/ch2/getYoilMVC?year=2022&month=3&day=17
-	@RequestMapping("/getYoilMVC")
+//	@RequestMapping("/getYoilMVC")
 	public ModelAndView main(int year, int month, int day) throws IOException{
 		ModelAndView mav = new ModelAndView();
 		
@@ -41,10 +41,9 @@ public class YoilTellerMVC {
 		
 		return mav;
 //		return "yoil";	// /WEB-INF/views/yoil.jsp
-		
-	
 	}
-
+	
+	
 	//현재 클래스에서만 사용하므로 접근제어자 private
 	private boolean isValid(int year, int month, int day) {
 		return true;

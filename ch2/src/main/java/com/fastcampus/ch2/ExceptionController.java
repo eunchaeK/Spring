@@ -2,15 +2,18 @@ package com.fastcampus.ch2;
 
 import java.io.FileNotFoundException;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 public class ExceptionController {
 	
-	@ExceptionHandler(Exception.class)		// 예외처리 메서드 
+	@ExceptionHandler(Exception.class)					// 예외처리 메서드 
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)	// 200 -> 500
 	public String catcher(Exception ex, Model m) {
 		System.out.println("catcher() in ExceptionController");
 		m.addAttribute("ex", ex);	//main() 메서드와 다른 모델 객체 

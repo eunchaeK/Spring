@@ -18,11 +18,26 @@ class Door {}
 @Component class SuperEngine extends Engine {}
 
 @Component
+@Scope("prototype")
 class Car {
     @Value("red") String color;
     @Value("100") int oil;
-    @Autowired    Engine engine;
-    @Autowired    Door[] doors;
+//    @Autowired
+    Engine engine;
+//    @Autowired
+    Door[] doors;
+
+    public Car(){}
+
+//    생성자는 @Autowired 생략 가능 but 기본 생성자 있을 때는 기본 생성자로 클래스 생성
+//    생성자가 여러개일 때는 매개변수 있는 생성자에 @Autowired 써줘야함
+    @Autowired
+    public Car(@Value("red") String color, @Value("100") int oil, Engine engine, Door[] doors) {
+        this.color = color;
+        this.oil = oil;
+        this.engine = engine;
+        this.doors = doors;
+    }
 
     @Override
     public String toString() {
@@ -44,19 +59,5 @@ public class ApplicationContextTest {
         System.out.println("car = " + car);
         System.out.println("car2 = " + car2);
 
-        System.out.println("ac.getBeanDefinitionNames() = " + Arrays.toString(ac.getBeanDefinitionNames())); // 정의된 빈의 이름을 배열로 반환
-        System.out.println("ac.getBeanDefinitionCount() = " + ac.getBeanDefinitionCount()); // 정의된 빈의 개수를 반환
-
-        System.out.println("ac.containsBeanDefinition(\"car\") = " + ac.containsBeanDefinition("car"));  // true 빈의 정의가 포함되어 있는지 확인
-        System.out.println("ac.containsBean(\"car\") = " + ac.containsBean("car")); // true 빈이 포함되어 있는지 확인
-
-        System.out.println("ac.getType(\"car\") = " + ac.getType("car")); // 빈의 이름으로 타입을 알아낼 수 있음.
-        System.out.println("ac.isSingleton(\"car\") = " + ac.isSingleton("car")); // true 빈이 싱글톤인지 확인
-        System.out.println("ac.isPrototype(\"car\") = " + ac.isPrototype("car")); // false 빈이 프로토타입인지 확인
-        System.out.println("ac.isPrototype(\"door\") = " + ac.isPrototype("door")); // true
-        System.out.println("ac.isTypeMatch(\"car\", Car.class) = " + ac.isTypeMatch("car", Car.class)); // "car"라는 이름의 빈의 타입이 Car인지 확인
-        System.out.println("ac.findAnnotationOnBean(\"car\", Component.class) = " + ac.findAnnotationOnBean("car", Component.class)); // 빈 car에 @Component가 붙어있으면 반환
-        System.out.println("ac.getBeanNamesForAnnotation(Component.class) = " + Arrays.toString(ac.getBeanNamesForAnnotation(Component.class))); // @Component가 붙은 빈의 이름을 배열로 반환
-        System.out.println("ac.getBeanNamesForType(Engine.class) = " + Arrays.toString(ac.getBeanNamesForType(Engine.class))); // Engine 또는 그 자손 타입인 빈의 이름을 배열로 반환
     }
 }

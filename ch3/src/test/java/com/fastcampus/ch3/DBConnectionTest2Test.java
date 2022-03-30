@@ -162,6 +162,40 @@ public class DBConnectionTest2Test {
         return rowCnt;
     }
 
+    @Test
+    public void transactionTest() throws Exception{
+        Connection conn=null;
+        try {
+            deleteAll();
+            conn = ds.getConnection();
+            conn.setAutoCommit(false);  //conn.setAutoCommit(ture); default
+
+            String sql = "INSERT INTO user_info VALUES (?, ?, ?, ?, ?, ?, now())";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);   // Statement에 비해 성능향상. SQL Injection 공격, ? 사용
+            pstmt.setString(1, "asdf");
+            pstmt.setString(2, "1234");
+            pstmt.setString(3, "테스트");
+            pstmt.setString(4, "test@gmail.com");
+            pstmt.setDate(5, new java.sql.Date(new Date().getTime())); // util.Date -> sql.Date
+            pstmt.setString(6, "fb");
+
+            int rowCnt = pstmt.executeUpdate(); // 첫 번째 insert
+
+            pstmt.setString(1, "asdf");
+            rowCnt = pstmt.executeUpdate();     // 두 번째 insert
+
+            conn.commit();
+
+        } catch (Exception e) {
+            conn.rollback();
+            e.printStackTrace();
+        }finally {
+
+        }
+
+    }
+
 
     @Test
     public void main() throws Exception{

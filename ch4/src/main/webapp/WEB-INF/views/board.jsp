@@ -30,7 +30,7 @@
         <input type="hidden" name="bno" value="${boardDto.bno}" >
         <input type="text" name="title" value="${boardDto.title}" ${mode=="new" ? '' : "readonly='readonly'"}>
         <textarea name="content" id="" cols="30" rows="10" ${mode=="new" ? '' : "readonly='readonly'"}>${boardDto.content}</textarea>
-        <button type="button" id="writeBtn" class="btn">등록</button>
+        <button type="button" id="writeBtn" class="btn">글쓰기</button>
         <button type="button" id="modifyBtn" class="btn">수정</button>
         <button type="button" id="removeBtn" class="btn">삭제</button>
         <button type="button" id="listBtn" class="btn">목록</button>
@@ -47,7 +47,7 @@
             let form = $('#form');
             let isReadOnly = $('input[name=title]').attr('readOnly');
 
-            if(isReadOnly=='readOnly'){
+            if(isReadOnly=='readonly'){
                 $('input[name=title]').attr('readOnly', false); // title
                 $('textarea').attr('readOnly', false);          // content
                 $('#modifyBtn').html('등록');

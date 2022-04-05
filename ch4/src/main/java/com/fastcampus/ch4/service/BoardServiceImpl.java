@@ -51,13 +51,14 @@ public class BoardServiceImpl implements BoardService {
         return boardDao.update(boardDto);
     }
 
-//    @Override
-//    public int getSearchResultCnt(SearchCondition sc) throws Exception {
-//        return boardDao.searchResultCnt(sc);
-//    }
-//
-//    @Override
-//    public List<BoardDto> getSearchResultPage(SearchCondition sc) throws Exception {
-//        return boardDao.searchSelectPage(sc);
-//    }
+    @Override
+    public List<BoardDto> getSearchResultPage(SearchCondition sc) throws Exception{
+        return boardDao.searchSelectPage(sc);
+    }
+
+    @Override
+    public int getSearchResultCnt(SearchCondition sc) throws  Exception{
+        return boardDao.searchResultCnt(sc);
+    }
+
 }

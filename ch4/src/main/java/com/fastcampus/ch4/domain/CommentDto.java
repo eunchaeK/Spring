@@ -1,5 +1,7 @@
 package com.fastcampus.ch4.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,7 +14,8 @@ public class CommentDto {
     private Date reg_date;
     private Date up_date;
 
-    public CommentDto() {}
+    public CommentDto() {
+    }
 
     public CommentDto(Integer bno, Integer pcno, String comment, String commenter) {
         this.bno = bno;
@@ -39,7 +42,7 @@ public class CommentDto {
         return this;
     }
 
-    public int getPcno() {
+    public Integer getPcno() {
         return pcno;
     }
 

@@ -22,7 +22,7 @@ public class SimpleRestController {
     }
 
 //    @ResponseBody
-    @PostMapping("/send")
+    @PostMapping("/send2")
     public Person test2(@RequestBody Person p) {    // jackson-databind가 String->Java 객체로 변환
         System.out.println("p = " + p);
         p.setName("ABC");

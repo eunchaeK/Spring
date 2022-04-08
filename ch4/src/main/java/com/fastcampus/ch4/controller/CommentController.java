@@ -27,7 +27,8 @@ public class CommentController {
     // 댓글을 수정하는 메서드
     @PatchMapping("/comments/{cno}")
     public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto dto) {
-
+        String commenter = "asdf";
+        dto.setCommenter(commenter);
         dto.setCno(cno);
         System.out.println("dto = " + dto);
 
@@ -92,6 +93,7 @@ public class CommentController {
     // 지정된 게시물의 모든 댓글을 가져오는 메서드
     @GetMapping("/comments")    // comments?bno=1080 GET
     public ResponseEntity<List<CommentDto>> list(Integer bno){
+        System.out.println("bno = " + bno);
         List<CommentDto> list = null;
 
         try {
